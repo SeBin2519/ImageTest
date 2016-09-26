@@ -12,10 +12,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*super.onCreate(savedInstanceState);
+        setContentView(new MyImage(getApplicationContext())); //this도 가능*/
+
         super.onCreate(savedInstanceState);
-        setContentView(new MyImage(getApplicationContext())); //this도 가능
+
+
     }
-    //사용자 정의 View를 만듦 ==> 도화지
+
+   /* //사용자 정의 View를 만듦 ==> 도화지
     class MyImage extends View {
         MyImage(Context context) { //생성자, view가 들어갈 문맥
             super(context); //view를 상속받음 => 부모의 객체가 생성될떄 defalt로 생성하지만 view는 없으므로 꼭 넣어줘야함
@@ -36,6 +41,6 @@ public class MainActivity extends AppCompatActivity {
             canvas.skew(0.4f,0.4f);//캔버스 비틀기
             canvas.drawBitmap(picture, x, y, null);//뷰의 현재 넓이
         }
-    }
+    }*/
 
 }
