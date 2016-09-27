@@ -7,18 +7,71 @@ import android.graphics.Canvas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.MultiAutoCompleteTextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity { //implements View.OnClickListener{
+    MyImage mImg;
+    //Button but1, but2,but3,but4;
+
+    public static final int ORIGINAL=0;//상수필드
+    public static final int ROTATE=1;//상수필드
+    public static final int TRANSELATE=2;//상수필드
+    public static final int SCALE=3;//상수필드
+    public static final int SKEW=4;//상수필드
+    int choose=ORIGINAL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);// setContentView(new MyImage(getApplicationContext())); //this도 가능*/
-
+        LinearLayout linear1 = (LinearLayout) findViewById(R.id.linear1);
+        mImg = new MyImage(getApplicationContext()); //핸재 화면 문맥 객체 반환
+        linear1.addView(mImg); //리니어 레이아웃의 차일드 뷰 설정 // linear1.addView(new MyImage(getApplicationContext()));
         //super.onCreate(savedInstanceState);
 
-
+        /* but1=(Button)findViewById(R.id.but_rotate);
+     but2=(Button)findViewById(R.id.but_transelate);
+     but3=(Button)findViewById(R.id.but_scale);
+     but4=(Button)findViewById(R.id.but_skew);*/
     }
+
+    public void Img(View v) {
+        //Toast.makeText(this,"Img 호출",Toast.LENGTH_SHORT).show();
+        switch (v.getId()) {
+            case R.id.but_rotate:
+                choose=ROTATE;
+                break;
+            case R.id.but_transelate:
+                choose=TRANSELATE;
+                break;
+            case R.id.but_scale:
+                choose=SCALE;
+                break;
+            case R.id.but_skew:
+                choose=SKEW;
+                break;
+        }
+        mImg.setChoose(choose); //설정
+
+        //다시 그리기
+        mImg.invalidate(); //이미지 변경: invalidate => 다시그리기
+    }
+}
+
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param v The view that was clicked.
+     */
+    /*@Override
+    public void onClick(View v) {
+        switch(v.getId()){
+
+        }
+    }*/
 
    /* //사용자 정의 View를 만듦 ==> 도화지
     class MyImage extends View {
@@ -43,4 +96,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }*/
 
-}
+
